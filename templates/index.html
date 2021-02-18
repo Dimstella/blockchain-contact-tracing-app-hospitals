@@ -1,0 +1,62 @@
+{% extends "base_hospital.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+   
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <a href="{% url 'patients_form' %}">
+                <button style="width: 1600px; height: 350px;" class="btn btn-default btn-lg btn-app shortcut primary">
+                  <img src="/static/images/medical-record.png" alt="" style="height: 200px;"></i> </br></br><h3>Add Patients</h3>  
+                </button>
+            </a>
+            <br/>
+            <a href="{% url 'patients_list' %}">
+                <button style="width: 1600px; height: 350px;" class="btn btn-default btn-lg btn-app shortcut primary">
+                  <img src="/static/images/medical-history.png" alt="" style="height: 200px;"></i> </br></br><h3>Patients list</h3>
+                 
+                <!-- <i class="fa fa-users btn-lg"></i> Patients list -->
+                </button>
+            </a>
+          </div>
+    
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+  <script src="/static/vendors/echarts/dist/echarts.min.js"></script>
+
+
+{% endblock javascripts %}
