@@ -5,3 +5,5 @@ Blockchain contact tracing app
 
 
 
+![alt text](https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/blob/main/image1.PNG)
+
