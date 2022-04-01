@@ -1,37 +1,73 @@
-## Welcome to GitHub Pages
+## Blockchain contact tracing app
 
-You can use the [editor on GitHub](https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The application of the experiment is designed according to hybrid architecture. A chosen centralized server and a decentralized blockchain in Ethereum is used. The tracing in the application is succeeded via the location of infected individuals.The health official completes a patient form with the patient's information and his condition. The patient's data are stored in the hospital's central server and blockchain.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/blob/main/image1.PNG" width="800" height="400" />
+
+<p>All patients' data accompanied by doctor's notes are stored in a secure hospital database. At the same time, the postal code, country, the status of the patient (Infected, Suspected, Cured) are appended in a blockchain. Finally, to satisfy GDPR requirements, a hashing is generated and saved in both the central database as a primary key and blockchain as an id.</p>
+
+img src="https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/blob/main/image2.PNG"  width="1200" height="400" />
+
+<p>From a user perspective, the information streams are between the contact tracing web application and the blockchain. The user searches about infected people in the area based on postal code, country, and city. The app requests the blockchain. Each user search interacts only with the public blockchain of Ethereum. There is no interaction with the hospital's database to avoid privacy issues.</p>
+
+<img src="https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/blob/main/image3.PNG"  width="1200" height="400" />
 
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+<h3>Smart Contract</h3>
 
-# Header 1
-## Header 2
-### Header 3
+``` Solidity
+pragma solidity ^0.6.0;
+pragma experimental ABIEncoderV2;
 
-- Bulleted
-- List
+contract Contact_tracing {
+    
+    enum Statuses { Infected, Suspected, Cured }
+    Statuses currentStatus;
+    address owner;
+    Patient patient;
+    mapping(uint256 => Patient) personById;
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+      constructor() public{
+      owner = msg.sender;
+    }
+      modifier ownerOnly(){
+          require(msg.sender == owner);
+          _;
+    }
 
-[Link](url) and ![Image](src)
+// Create a struct that saves the information of the infected person
+
+    struct Patient {
+        Statuses status;
+        string postal;
+        string hospitalName;
+        string hashing;
+        string country;
+    }
+        
+    
+    Patient[] public patients;
+    
+    function addPatient(Statuses _status, string memory _postal, string memory _hospitalName, string memory _hashing, string memory _country) public returns(uint) {
+
+        patients.push(Patient(_status, _postal, _hospitalName, _hashing, _country));
+        
+        return patients.length;
+    }
+
+    function getPatientsCount() public view returns(uint) {
+        return patients.length;
+    }
+
+    
+    function gettPatient(uint index)  public view returns (Patient memory) {
+        return patients[index];
+    }
+    
+
+}
 ```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
