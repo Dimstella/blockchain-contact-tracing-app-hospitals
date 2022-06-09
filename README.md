@@ -1,4 +1,4 @@
-# Blockchain contact tracing app
+# Blockchain contact tracing app 
 
 
 <p>The application of the experiment is designed according to hybrid architecture. A chosen centralized server and a decentralized blockchain in Ethereum is used. The tracing in the application is succeeded via the location of infected individuals.The health official completes a patient form with the patient's information and his condition. The patient's data are stored in the hospital's central server and blockchain.</p>
@@ -12,6 +12,8 @@
 <p>From a user perspective, the information streams are between the contact tracing web application and the blockchain. The user searches about infected people in the area based on postal code, country, and city. The app requests the blockchain. Each user search interacts only with the public blockchain of Ethereum. There is no interaction with the hospital's database to avoid privacy issues.</p>
 
 <img src="https://github.com/Dimstella/blockchain-contact-tracing-app-hospitals/blob/main/image3.PNG"  width="1200" height="400" />
+
+Find the publication <a href="https://repository.ihu.edu.gr/xmlui/handle/11544/29786">here</a>.
 
 <h3>Smart Contract</h3>
 
